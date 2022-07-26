@@ -31,17 +31,4 @@ public class MazeRotate : MonoBehaviour
         transform.Rotate(Vector3.right, Time.deltaTime * rotateSpeed * zInput, Space.World);
     }
 
-    /* void Update()
-     {
-         if (Input.GetKeyDown(KeyCode.Alpha1))
-         {
-             RotateToPos();
-         }
-     }   
-
-     // give this method the infromation which button was used
-     void RotateToPos()
-     {
-        /* transform. (-0.275f, 161.162f, 57.582f, Space.World);*/
-
 }

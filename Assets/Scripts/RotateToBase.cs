@@ -11,7 +11,6 @@ public class RotateToBase : MonoBehaviour
     public GameObject myMainCamera_GO;                                          // Main Camera Keeps SafePositionsDictionary
 
     private SafePositions mySafePositions_Script;                               // acces to Safe Positions Dictionary
-    //Transform basePos;
     private GameObject ball_GO;
     private Vector3 safeSphere_V3;                                              // keeps safe Sphere Rotation coordinates
     private Vector3 safeBall_V3;                                                // keeps safe Ball Position coordinates
@@ -19,16 +18,11 @@ public class RotateToBase : MonoBehaviour
     private Rigidbody ball_Rb;                                                  // use Rb to stop ball Rotation and Velocity when move to safe positions
     private Transform ball_Transform;
 
-    //AudioSource ballAudioSrc;                                                 // take audioSource
-    //[SerializeField] bool isMoving = false;
-
     public float rotateSpeed = 150f;
     public bool rotatingOn = false;
 
     public void Start()
     {
-        /*basePos = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Transform>();*/ // Am I using this or not?
-
         mySafePositions_Script = myMainCamera_GO.GetComponent<SafePositions>();
 
         safeSphere_V3 = mySafePositions_Script.SafeSphereRotation;
@@ -40,7 +34,7 @@ public class RotateToBase : MonoBehaviour
         StartCoroutine(CoroutineFindBallPosAndRb());                // find the ball RigidBody and Transform Components
 
     }
-
+/*
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -49,8 +43,6 @@ public class RotateToBase : MonoBehaviour
         }
         if (rotatingOn)
         {
-            //TakeSafeRotAndPos();          // so many calls 
-            //FindBallPosAndRb();           // not good
             MovementProcess();              // good
             MoveBallToPos();                // not good !!!! // better to move ball using coroutine and wait until rotatingOn = false;
         }
@@ -70,7 +62,7 @@ public class RotateToBase : MonoBehaviour
             TakeSafeRotAndPos();
         }
     }
-
+*/
     public void TakeSafeRotAndPos()
     {
         safeSphere_V3 = mySafePositions_Script.SafeSphereRotation;
@@ -108,9 +100,7 @@ public class RotateToBase : MonoBehaviour
         {
             ball_Rb = ball_GO.GetComponent<Rigidbody>();
             ball_Transform = ball_GO.GetComponent<Transform>();
-            //ballAudioSrc = ball.GetComponent<AudioSource>();
             print("The ball position and Rb was founded");
-            //Debug.Log("Audios score is" + ballAudioSrc);
         }
         yield return null;
     }

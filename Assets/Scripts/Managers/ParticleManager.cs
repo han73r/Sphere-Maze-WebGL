@@ -15,8 +15,6 @@ public class ParticleManager : MonoBehaviour
     public AudioSource confettiAudioSource2;
     public AudioSource confettiAudioSource3;
 
-    // public SafePositions mySafePositions_Script;
-
     private int firstSafePosition = 1;
     private int secondSafePosition = 2;
     private int winSafePosition = 3;
@@ -25,7 +23,6 @@ public class ParticleManager : MonoBehaviour
 
     public void PlayParticle(int step)
     {
-        // myKeyToDict = mySafePositions_Script.KeyToDict;
         if (step == firstSafePosition)
         {
             confetti_PS_1L.Play();

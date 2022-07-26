@@ -16,22 +16,17 @@ using UnityEditor;
 public class GameData : MonoBehaviour
 {
 
-    // shoud I use Encapsulation here?
+    // shoud I use the Encapsulation here?
     public static GameData Instance;
 
     [SerializeField] private float bestSector1Time;
     [SerializeField] private float bestSector2Time;
     [SerializeField] private float bestSector3Time;
     [SerializeField] private float bestTotalTime;
-
-    //private bool onMusic {set;get;}
-    //private bool onSound {set;get;}
-    // change to upper when you'll ready)
-
     [SerializeField] private int _gameLaunchCount;
     public int gameLaunchCount
     {
-        get {return _gameLaunchCount;}
+        get { return _gameLaunchCount; }
     }
 
     //    [SerializeField] private int nextGameLaunchCount;
@@ -246,19 +241,6 @@ public class GameData : MonoBehaviour
             onSound = true;
 
             print("sound data file doesn't exist so anything set as true");
-        }
-
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Delete))
-        {
-            print("delete button = Delete Score() and LauchData()");
-            DeleteScore();
-            print("The Best Score file was deleted");
-            DeleteLaunchData();
-            print("Launch count file was deleted");
         }
 
     }

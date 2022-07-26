@@ -39,8 +39,6 @@ public class TimeManager : MonoBehaviour
 
     private float timeDeltaTime = -3f;                      // Total timer, -3 because game starts on 1.. 2.. 3.. (3sec delay)
 
-    //private GameObject timerText_GO;
-
     TimeSpan timePlaying;
 
     [SerializeField] private bool isTimerGoing;
@@ -78,7 +76,6 @@ public class TimeManager : MonoBehaviour
             return;
         }
         Instance = this;
-        /*        DontDestroyOnLoad(gameObject);*/
     }
 
     void Start()
@@ -104,15 +101,7 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         timeDeltaTime += Time.deltaTime;
-/*
-        if (Input.GetKey(KeyCode.P))
-        {
-            EndTimer();
-            ShowResult();
-            // launch IENUMERATOR THAT Pause Sector Time = SectorCurrent Time
-            // 
-        }
-*/
+
         if (Input.GetKey(KeyCode.O))
         {
             BeginTimer();
@@ -140,27 +129,11 @@ public class TimeManager : MonoBehaviour
         {
             GameData.Instance.DeleteScore();
         }
-/*
-                if (Input.GetKeyDown(KeyCode.J))
-                {
-
-                    StartCoroutine("ShowSectorTime");
-                    // ShowNewSectorTime();
-                }
-*/
-/*
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            coShowBestResult = StartCoroutine(ShowSectorTime());
-        }
-*/
     }
 
     public void ChangeColor_ShowBestSectorTime(int step)
     {
-        //ChangeTimerColor();
         coShowBestResult = StartCoroutine(ShowSectorTime(step));
-        //StartCoroutine("ShowSectorTime");
     }
 
     // here change colors etc
@@ -359,20 +332,10 @@ public class TimeManager : MonoBehaviour
                 bestScore_GO.SetActive(true);
                 differenceTime_GO.SetActive(true);
             }
-
-
-            ////////////////////////////////////////////////////////////////////////////////////////////
-            // GAME STOP HERE // GAME STOP HERE // GAME STOP HERE // GAME STOP HERE // GAME STOP HERE //
-            ////////////////////////////////////////////////////////////////////////////////////////////
-
             WinGame();
-
-
         }
-
         // show timer
         currentTime_GO.SetActive(true);
-
     }
 
     private void WinGame()
@@ -383,97 +346,24 @@ public class TimeManager : MonoBehaviour
         // if bit previos score SHOW YOU BIT YOUR SCORE or NEW BEST SCORE IS:
     }
 
-/*
-    // delete this one
-    void ChangeTimerColor()                                     // good, works as need
-    {
-        if (step == 1)
-        {
-            currentTime_Text.color = sector1_Color32;
-            currentSectorName_Text.color = sector1_Color32;
-            currentSectorName_Text.text = "Sector 1";
-
-            sectorTime_Text.color = sector1_Color32;
-
-            bestScore_Text.text = TimeSpan.FromSeconds(myBestSector1Time).ToString("mm':'ss'.'f"); // convert system
-
-            step++;
-        }
-        else if (step == 2)
-        {
-            currentTime_Text.color = sector2_Color32;
-            currentSectorName_Text.color = sector2_Color32;
-            currentSectorName_Text.text = "Sector 2";
-
-            sectorTime_Text.color = sector2_Color32;
-
-            bestScore_Text.text = TimeSpan.FromSeconds(myBestSector2Time).ToString("mm':'ss'.'f");
-
-            step++;
-        }
-        else if (step == 3)
-        {
-            currentTime_Text.color = sector3_Color32;
-            currentSectorName_Text.color = sector3_Color32;
-            currentSectorName_Text.text = "Sector 3";
-
-            sectorTime_Text.color = sector3_Color32;
-
-            bestScore_Text.text = TimeSpan.FromSeconds(myBestSector3Time).ToString("mm':'ss'.'f");
-
-            step++;
-        }
-        else if (step == 4)
-        {
-            currentTime_Text.color = total_Color32;
-            currentSectorName_Text.color = total_Color32;
-            currentSectorName_Text.text = "Total Time";
-
-            sectorTime_Text.color = total_Color32;
-
-            bestScore_Text.text = TimeSpan.FromSeconds(myBestTotalTime).ToString("mm':'ss'.'f");
-
-            step = 1;
-        }
-
-    }
-*/
-/*
-    private void ShowResult()           // convert to Ienumrator: show for 3 sec and then new Sector Timer
-    {
-        bestScore_GO.SetActive(true);
-    }
-*/
     public void BeginTimer()
     {
-        //StopAllCoroutines();                        // fix problem withUpdate
-        //isTimerGoing = false;
-        //StopCoroutine(UpdateTimer());             // don't fix problem withUpdate, what's wrong?
-        //StopCoroutine(UpdateTimer());               // may be this fixed problem? No!
-
         isTimerGoing = false;
         if (coUpdateTimer != null)
         {
             StopCoroutine(coUpdateTimer);
         }
-
-
         sectorCurrentTime = 0f;
-        //timePlaying = TimeSpan.FromSeconds(sectionCurrentTime); //No
         isTimerGoing = true;
         coUpdateTimer = StartCoroutine(UpdateTimer());
     }
 
-    public void EndTimer()                 
+    public void EndTimer()
     {
         isTimerGoing = false;
         StopCoroutine(UpdateTimer());
-        //save current Time
-        // show it for 3 sec
-        // timer should go from start
+
     }
-
-
 
     private IEnumerator UpdateTimer()
     {

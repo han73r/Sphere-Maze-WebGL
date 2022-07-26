@@ -39,8 +39,6 @@ public class MenuUIHandler : MonoBehaviour
         {
             Time.timeScale = 1;
         }
-        //SceneManager.LoadScene(0);
-        LoadingManager.Instance.LoadGame("Menu", "Main");
     }
 
     public void ReloadScene()

@@ -16,8 +16,6 @@ public class BallCollides : MonoBehaviour
     private GameManager myGameManager_Script;
     private TimeManager myTimeManager_Script;
 
-    // ADD public Audition here
-    //public AudioSource ballMoveSound;
     public BallSoundManager myBallSoundManager;
 
     private string collideSafePosName;
@@ -41,8 +39,6 @@ public class BallCollides : MonoBehaviour
     private int step2 = 2;
     private int step3 = 3;
 
-    //private bool onDust = false;
-
     void Start()
     {
         myMainCamera_GO = GameObject.Find("Main Camera");
@@ -51,16 +47,12 @@ public class BallCollides : MonoBehaviour
         myMassCenter_GO = GameObject.Find("MassCenter");
         myRotateToBase_Script = myMassCenter_GO.GetComponent<RotateToBase>();
 
-        //myTiming_GO = GameObject.Find("Canvas");
-       // myTimeManager_Script = myTiming_GO.GetComponent<TimeManager>();
-
         myGameManager_GO = GameObject.Find("GameManager");
         myGameManager_Script = myGameManager_GO.GetComponent<GameManager>();
         myTimeManager_Script = myGameManager_GO.GetComponent<TimeManager>();
         myParticleManager_Script = myGameManager_GO.GetComponent<ParticleManager>();
     
         ball_Rb = GetComponent<Rigidbody>();
-        //print("ball Rb is " + ball_Rb);
 
         myBallSoundManager = GetComponent<BallSoundManager>();
 
@@ -104,7 +96,6 @@ public class BallCollides : MonoBehaviour
             if (collideSafePosName != previousSafePosName)
             {
                 Debug.Log("The ball reached pos number " + collideSafePosName);
-                // myParticleManager_Script.PlayParticle();
                 // ADD Play Sound Here TOO
                 ChangeDictKey();
 
@@ -143,8 +134,6 @@ public class BallCollides : MonoBehaviour
         }
         if (other.CompareTag("StopGame"))
         {
-            // print ("Ball collides with table");
-            // disable ball sound
             myBallSoundManager.StopBallMoveSound();
             myGameManager_Script.GameOverWithAdv();
         }
